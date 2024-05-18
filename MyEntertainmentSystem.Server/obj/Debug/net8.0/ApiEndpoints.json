@@ -1,0 +1,122 @@
+[
+  {
+    "ContainingType": "MyEntertainmentSystem.Server.Controllers.HobbiesController",
+    "Method": "InsertAnime",
+    "RelativePath": "Hobbies",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "MyEntertainmentSystem.Data.Entities.HobbyCategories.Hobbies",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MyEntertainmentSystem.Data.Entities.HobbyCategories.Hobbies",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MyEntertainmentSystem.Server.Controllers.HobbiesController",
+    "Method": "UpdateAnime",
+    "RelativePath": "Hobbies",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "MyEntertainmentSystem.Data.Entities.HobbyCategories.Hobbies",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MyEntertainmentSystem.Server.Controllers.HobbiesController",
+    "Method": "GetById",
+    "RelativePath": "Hobbies/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MyEntertainmentSystem.Data.Entities.HobbyCategories.Hobbies",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MyEntertainmentSystem.Server.Controllers.HobbiesController",
+    "Method": "DeleteAnime",
+    "RelativePath": "Hobbies/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "MyEntertainmentSystem.Data.Entities.HobbyCategories.Hobbies",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MyEntertainmentSystem.Server.Controllers.HobbiesController",
+    "Method": "GetList",
+    "RelativePath": "Hobbies/list",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IList\u00601[[MyEntertainmentSystem.Data.Entities.HobbyCategories.Hobbies, MyEntertainmentSystem.Data.Entities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

@@ -3,6 +3,7 @@ using MyEntertainmentSystem.Application.Mappers;
 using MyEntertainmentSystem.Application.Services;
 using MyEntertainmentSystem.Data.Access;
 using MyEntertainmentSystem.Data.Access.Repositories;
+using MyEntertainmentSystem.Data.Entities.HobbyCategories;
 
 namespace MyEntertainmentSystem.Server
 {
@@ -11,7 +12,9 @@ namespace MyEntertainmentSystem.Server
         public static IServiceCollection ServiceRegistryContainer(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped<HobbiesService>();
-            services.AddScoped(typeof(IRepository), typeof(Repository));
+            services.AddScoped<PopularHobbiesService>();
+            services.AddScoped(typeof(IRepository<Hobbies>), typeof(Repository<Hobbies>));
+            services.AddScoped(typeof(IHobbyRepository), typeof(HobbyRepository));
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped(typeof(AutoMapper.Mapper));
             services.AddDbContext<ApplicationDataContext>(options =>

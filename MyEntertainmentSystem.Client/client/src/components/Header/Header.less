@@ -1,35 +1,95 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-.header {
-  display: flex;
+header {
+  position: fixed;
+  top: 0;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: var(--background-color, #ffffff);
-  color: var(--text-color, #000000);
-  border-bottom: 1px solid #ccc;
-}
+  width: 100%;
+  background-color: var(--background-color, #347db9);
+  color: white;
+  height: 65px;
+  z-index: 1000;
 
-.logo h1 {
-  margin: 0;
-}
+  div.menu-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding: 10px 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(100% - 50px);
+    max-width: 2200px;
 
-.nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
+    svg {
+      transform: scale(0.9);
+    }
+  
+    div.logo {
+      display: flex;
+      height: 45px;
+      cursor: pointer;
+      align-items: center;
+      transition: ease 0.3s;
+      
+  
+      &:hover {
+        transform: scale(1.1);
+        transition: ease 0.3s;
+      }
+  
+      svg.house {
+        transform: translateY(-2px);
+      }
+    }
+    nav {
+      align-content: center;
+      ul {
+        list-style-type: none;
+        display: flex;
+  
+        li {
+          margin-left: 20px;
+          transition: ease 0.3s;
+  
+          &:hover {
+            transform: scale(1.2);
+            transition: ease 0.3s;
+            text-decoration: underline;
+          }
+          a {
+  
+            text-decoration: none;
+            color: white;
+        
+  
+          }
+        }
+      }
+    }
+  
+    nav.other-links {
+      ul {
+        align-items: center;
+  
+        li {
+          a {
+            position: relative;
+            svg {
+              transform: scale(1);
+  
+              &.signout {
+                position: absolute;
+                left: -25px;
+                transform: translateY(-2px);
+              }
+            }
+          }
+  
+          &:nth-last-child(1) {
+            margin-left: 40px;
+          }
+        }
+      }
+    }
+  }
+  
 
-.nav li {
-  margin-left: 20px;
-}
-
-.nav a {
-  text-decoration: none;
-  color: var(--text-color, #000000);
-  font-weight: bold;
 }

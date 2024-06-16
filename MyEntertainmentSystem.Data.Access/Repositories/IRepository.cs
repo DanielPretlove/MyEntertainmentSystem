@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MyEntertainmentSystem.Data.Access.Repositories
 {
-    public interface IRepository
+    public interface IRepository<T>
     {
-        Task<IList<Hobbies>> GetAllAsync();
-        Task<Hobbies> GetById(Guid id);
-        Task<Hobbies> InsertAsync(Hobbies entity);
-        Task UpdateAsync(Hobbies entity);
-        Task<Hobbies> DeleteAsync(Guid id);
+        Task<IList<T>> GetAllAsync();
+        Task<T> GetById(Guid id);
+        Task<T> InsertAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task<T> DeleteAsync(Guid id);
     }
 }

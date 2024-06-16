@@ -10,9 +10,9 @@ namespace MyEntertainmentSystem.Application.Services
 {
     public class HobbiesService
     {
-        private readonly IRepository _repository;
+        private readonly IRepository<Hobbies> _repository;
 
-        public HobbiesService(IRepository repository)
+        public HobbiesService(IRepository<Hobbies> repository)
         {
             _repository = repository;
         }

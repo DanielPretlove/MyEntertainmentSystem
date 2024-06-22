@@ -1,4 +1,5 @@
-*.vs
-/*.vs
-*.vsidx
-/*.vsidx
+.*
+!.gitignore
+obj
+bin
+.vs

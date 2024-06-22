@@ -159,7 +159,6 @@ export default function Header({ isActive, toggleMenu }: Props) {
                                       {itemChildren.name}
                                     </Link>
                                       <LogoutOutlinedIcon className="logout-icon" />
-
                                   </div>
                                 );
                               } else {

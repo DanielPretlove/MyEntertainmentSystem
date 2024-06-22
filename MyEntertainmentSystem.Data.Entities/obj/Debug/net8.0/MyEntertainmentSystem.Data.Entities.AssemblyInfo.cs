@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyEntertainmentSystem.Data.Entities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d52ce17abe237d95172e8ddab84f49414ce7e31")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3490a6594731e52579d3286127df773aa1bf9df7")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyEntertainmentSystem.Data.Entities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyEntertainmentSystem.Data.Entities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

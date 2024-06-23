@@ -5,25 +5,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonIcon from "@mui/icons-material/Person";
-import { header, HeaderChildren } from "../../models/HeaderModel";
+import { header } from "../../models/HeaderModel";
+import { useContext } from "react";
+import { ActiveModeContext } from "../../context/Nav/NavContext";
 
-type Props = {
-  isActive: any;
-  toggleMenu: any;
-};
 
-export default function Header({ isActive, toggleMenu }: Props) {
+
+export default function Header() {
   const navigate = useNavigate();
-
-  console.log(header.length);
-
-  for (let i = 0; i < header.length; i++) {
-    if (header[i].children !== null) {
-      console.log("Header");
-    } else {
-      console.log("Not header");
-    }
-  }
+  const nav = useContext(ActiveModeContext);
 
   return (
     <header>
@@ -80,7 +70,10 @@ export default function Header({ isActive, toggleMenu }: Props) {
                                   <Link to={itemChildren.url}>
                                     {itemChildren.name}
                                   </Link>
-                                  <LogoutOutlinedIcon className="logout-icon" fontSize="small" />
+                                  <LogoutOutlinedIcon
+                                    className="logout-icon"
+                                    fontSize="small"
+                                  />
                                 </div>
                               );
                             } else {
@@ -107,12 +100,12 @@ export default function Header({ isActive, toggleMenu }: Props) {
         </div>
 
         <div className="mobile-menu-container">
-          <div className="header-icon-container" onClick={() => toggleMenu()}>
+          <div className="header-icon-container" onClick={() => nav.toggleActive()}>
             <p>Menu</p>
             <MenuIcon className="menuIcon"></MenuIcon>
           </div>
 
-          <div className={isActive ? "active" : "not-active"}>
+          <div className={!nav.active ? "active" : ""}>
             <div className="mobile-menu-content">
               <nav>
                 <ul>
@@ -122,8 +115,10 @@ export default function Header({ isActive, toggleMenu }: Props) {
                       if (item.children !== null) {
                         return (
                           <li>
-                            <span>{item.name}</span>
-                            <KeyboardArrowDownIcon />
+                            <div className="group-name">
+                              <span>{item.name}</span>
+                              <KeyboardArrowDownIcon />
+                            </div>
                             <div className="group-items">
                               {item.children?.map((itemChildren) => {
                                 return (
@@ -152,13 +147,12 @@ export default function Header({ isActive, toggleMenu }: Props) {
                           <div className="group-items">
                             {item.children?.map((itemChildren) => {
                               if (itemChildren.name === "Logout") {
-                                console.log(itemChildren.name);
                                 return (
                                   <div className="logout-section">
                                     <Link to={itemChildren.url}>
                                       {itemChildren.name}
                                     </Link>
-                                      <LogoutOutlinedIcon className="logout-icon" />
+                                    <LogoutOutlinedIcon className="logout-icon" />
                                   </div>
                                 );
                               } else {

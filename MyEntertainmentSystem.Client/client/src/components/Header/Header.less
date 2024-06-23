@@ -8,11 +8,11 @@ header {
   background-color: var(--background-color, @primaryColor);
   color: white;
   height: 65px;
-  z-index: 1000;
+  z-index: 2;
+  div.mobile-menu-container {
+    display: none;
+  }
 
-div.mobile-menu-container {
-  display: none;
-}
 
 div.nav-menu {
   div.menu-container {
@@ -58,7 +58,6 @@ div.nav-menu {
           align-self: center;
 
           span {
-            font-size: 18px;
             cursor: pointer;
           }
 
@@ -78,6 +77,7 @@ div.nav-menu {
             position: absolute;
             background-color: @primaryColor;
             padding: 15px 8px;
+            width: 130px;
             column-gap: 10px;
 
             a {
@@ -132,6 +132,7 @@ div.nav-menu {
       display: flex;
       flex-direction: column;
       align-items: end;
+      position: relative;
 
       div.header-icon-container {
         padding: 10px 25px;
@@ -152,118 +153,103 @@ div.nav-menu {
 
 
       div.mobile-menu-content {
-        display: none;
-        animation: fade-in 1s;
+        transform: translateX(100%);
+        // animation: fade-out 1s;
+        transition: transform 400ms ease-in;
+        right: 0;
+        background-color: @primaryColor;
+        height: 100vh;
+        width: 210px;
+        max-width: 100%;
+        nav {
+          flex-direction: column;
 
-      }
-
-      
-      div.active  {
-        div.mobile-menu-content { 
-          display: block;
-          position: relative;
-          right: 0;
-          background-color: @primaryColor;
-          height: 100vh;
-          box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-          width: 230px;
-          max-width: 100%;
-          z-index: 100;
-          animation: fade-in 1s;
-          nav {
-            flex-direction: column;
-
-            ul {
-              list-style: none;
-              li {
-                padding: 10px 25px;
+          ul {
+            list-style: none;
+            li {
+              padding: 10px 25px;
+              position: relative;
               
-                div.group-items {
-                  position: absolute;
-                  opacity: 0;
+              div.group-items {
+                position: absolute;
+                opacity: 0;
+                top: 1px;
+              }
+
+              div.group-name {
+                display: flex;
+                align-items: center; 
+              }
+    
+              &:hover div.group-items {
+                position: relative;
+                opacity: 1;
+                display: flex;
+                flex-direction: column;
+                transition: all 0.3s ease-in;
+                padding: 15px 15px 0 15px; 
+
+                li {
+                  display: block;
                 }
 
-                div.group-name {
-                  display: flex;
-                  align-items: center; 
-                }
-      
-                &:hover div.group-items {
-                  position: relative;
-                  opacity: 1;
-                  display: flex;
-                  flex-direction: column;
-                  transition: all 0.3s ease-in;
-                  padding: 15px 15px 0 15px; 
-
-                  a {
-                    margin-bottom: 10px;
-                    &:hover {
-                      text-decoration: underline;
-                    }
-                  }
-
-                  .logout-section {
-                    display: flex;
-                    align-items: center;
-                    
-                    a {
-                      margin-right: 8px;
-                    }
-      
-                    .logout-icon {
-                      margin-top: -10px;
-                    }
-                  }
-                }
-                span {
-                  color: white;
-                  font-weight: 600;
-                  font-size: 16px;
-                }
                 a {
-                  color: white;
-                  transition: color 0.1s;
-                  font-weight: 600;
-                  cursor: pointer;
-                  text-decoration: none;
-
+                  margin-bottom: 10px;
                   &:hover {
                     text-decoration: underline;
                   }
                 }
 
-                &.avatar-list {
-                  .avatar {
-                    cursor: pointer;
+                .logout-section {
+                  display: flex;
+                  align-items: center;
+                  
+                  a {
+                    margin-right: 8px;
                   }
+    
+                  .logout-icon {
+                    margin-top: -10px;
+                  }
+                }
+              }
+              span {
+                color: white;
+                font-weight: 600;
+              }
+              a {
+                color: white;
+                transition: color 0.1s;
+                font-weight: 600;
+                cursor: pointer;
+                text-decoration: none;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+
+              &.avatar-list {
+                .avatar {
+                  cursor: pointer;
                 }
               }
             }
           }
         }
       }
+
+      
+      div.active  {
+        div.mobile-menu-content { 
+          display: block;
+          position: absolute;
+          transform: translateX(0%);
+          transition: transform 400ms ease-out;
+
+
+        }
+      }
     }
-  }
-}
-
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
   }
 }

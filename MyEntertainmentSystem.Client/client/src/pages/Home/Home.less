@@ -5,10 +5,34 @@ body {
     overflow-y: hidden;
 }
 
+div.content {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  height: calc(100vh - 200px);
+  flex-direction: column;
+  color: @primaryColor;
+  z-index: 1;
+  justify-content: end;
+
+  @media @tablet {
+    height: calc(100vh - 170px);
+  }
+
+  h1 {
+    filter: drop-shadow(.03em .03em orange);
+    margin-bottom: 10px;
+  }
+
+  p {
+    filter: drop-shadow(.03em .03em orange);
+  }
+}
+
 div.image-container {
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 0;
+    top: 65px;
     width: 100vw;
     height: 100%;
 }

@@ -3,30 +3,28 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
 import PageWrapper from './components/PageWrapper/PageWrapper';
-import Hobbies from './pages/Hobbies/Hobbies';
-import { useState } from 'react';
+import { useContext } from 'react';
+import HobbiesAdminPage from './pages/Admin/Hobbies/HobbiesAdminPage/HobbiesAdminPage';
+import { ActiveModeContext } from './context/Nav/NavContext';
 
 
 
 
 export default function App() {
-  const [isActive, setActive] = useState(false);
-  const toggleMenu = () => {
-    setActive(!isActive);
-  };
+  const nav = useContext(ActiveModeContext);
+
   return (
     <div className="App">
-      <div className='overlay' onClick={toggleMenu}>
+      <div className={!nav.active ? "overlay" : ""} onClick={() => nav.toggleActive()}></div>
         <BrowserRouter>
-          <Header isActive={isActive} toggleMenu={toggleMenu} />
+          <Header />
           <PageWrapper>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/hobbies" element={<Hobbies />} />
+              <Route path="/admin-hobbies" element={<HobbiesAdminPage />} />
             </Routes>
           </PageWrapper>
         </BrowserRouter>
-      </div>
     </div>
   );
 }

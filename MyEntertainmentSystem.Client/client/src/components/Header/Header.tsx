@@ -7,13 +7,13 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonIcon from "@mui/icons-material/Person";
 import { header } from "../../models/HeaderModel";
 import { useContext } from "react";
-import { ActiveModeContext } from "../../context/Nav/NavContext";
+import { NavContext } from "../../context/Nav/NavContext";
 
 
 
 export default function Header() {
   const navigate = useNavigate();
-  const nav = useContext(ActiveModeContext);
+  const nav = useContext(NavContext);
 
   return (
     <header>
@@ -100,12 +100,12 @@ export default function Header() {
         </div>
 
         <div className="mobile-menu-container">
-          <div className="header-icon-container" onClick={() => nav.toggleActive()}>
+          <div className="header-icon-container" onClick={() => nav.toggleNav()}>
             <p>Menu</p>
             <MenuIcon className="menuIcon"></MenuIcon>
           </div>
 
-          <div className={!nav.active ? "active" : ""}>
+          <div className={nav.state ? "active" : ""}>
             <div className="mobile-menu-content">
               <nav>
                 <ul>

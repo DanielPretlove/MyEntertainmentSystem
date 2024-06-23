@@ -1,12 +1,19 @@
 export const initialState = {
-  active: false
+  toggle: false
 };
 
-export function NavReducer(state: any, action: any) {
+export interface NavState {
+  toggle: Object;
+}
+export type NavAction = {
+  type: string;
+}
+
+export function NavReducer(state: NavState, action: NavAction) {
   switch (action.type) {
     case "toggle": {
-      const toggle = state.active;
-      return { ...state, active: !toggle };
+      const toggle = state.toggle;
+      return { ...state.toggle, toggle: !toggle };
     }
     default:
       throw new Error();

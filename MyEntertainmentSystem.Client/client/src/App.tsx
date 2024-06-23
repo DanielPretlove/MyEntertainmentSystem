@@ -5,17 +5,16 @@ import Header from './components/Header/Header';
 import PageWrapper from './components/PageWrapper/PageWrapper';
 import { useContext } from 'react';
 import HobbiesAdminPage from './pages/Admin/Hobbies/HobbiesAdminPage/HobbiesAdminPage';
-import { ActiveModeContext } from './context/Nav/NavContext';
+import { NavContext } from './context/Nav/NavContext';
 
 
 
 
 export default function App() {
-  const nav = useContext(ActiveModeContext);
-
+  const nav = useContext(NavContext);
   return (
     <div className="App">
-      <div className={!nav.active ? "overlay" : ""} onClick={() => nav.toggleActive()}></div>
+      <div className={nav.state ? "overlay" : ""} onClick={() => nav.toggleNav()}></div>
         <BrowserRouter>
           <Header />
           <PageWrapper>

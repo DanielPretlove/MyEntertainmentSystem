@@ -142,7 +142,6 @@ div.nav-menu {
         .menuIcon {
           margin-left: 20px;
           cursor: pointer;
-          color: #4D849D;
           font-size: 40px;
         }
 
@@ -246,9 +245,12 @@ div.nav-menu {
           position: absolute;
           transform: translateX(0%);
           transition: transform 400ms ease-out;
-
-
         }
+      }
+
+      div.not-active {
+        position: relative;
+        z-index: 0;
       }
     }
   }

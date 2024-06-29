@@ -10,13 +10,14 @@ namespace MyEntertainmentSystem.Data.Entities.HobbyCategories
     public class Hobbies : DataEntity
     {
         public required string Name { get; set; }
-        public required string Description { get; set; }
+        public required string Categories { get; set; }
+        public required ICollection<Summary> Description { get; set; }
         public required string ImagePath { get; set; }
         public string? Episodes { get; set; }
 
         [DefaultValue(false)]
         public bool Featured { get; set; } = false;
-        public HobbiesEnumType Type { get; set; }
+        public HobbiesEnumType HobbyType { get; set; }
         public CompletionStateEnum CompletionState { get; set; }
     }
 }

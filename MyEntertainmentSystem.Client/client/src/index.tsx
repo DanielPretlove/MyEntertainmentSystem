@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <NavContextProvider>
-      <App />
-    </NavContextProvider>
+      <NavContextProvider>
+        <App />
+      </NavContextProvider>
   </React.StrictMode>
 );
 

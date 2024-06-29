@@ -8,14 +8,25 @@ using System.Threading.Tasks;
 
 namespace MyEntertainmentSystem.Data.Access.Repositories
 {
-    public class HobbyRepository : IHobbyRepository
+    public class HobbyRepository : Repository<Hobbies>, IHobbyRepository 
     {
         private readonly ApplicationDataContext _context;
 
-        public HobbyRepository(ApplicationDataContext context)
+        public HobbyRepository(ApplicationDataContext context) : base(context)
         {
             _context = context;
         }
+
+        public async Task<IList<Hobbies>> GetAllHobbiesAsync()
+        {
+            return await _context.Set<Hobbies>().Include(h => h.Description).ToListAsync();
+        }
+
+        public async Task<Hobbies?> GetHobbyById(Guid id)
+        {
+            return await _context.Set<Hobbies>().Include(h => h.Description).FirstOrDefaultAsync(h => h.Id == id);
+        }
+
         public async Task<IList<Hobbies>> GetTopFeaturedHobbiesAsync()
         {
             return await _context.Set<Hobbies>().Where(h => h.Featured).OrderByDescending(h => h.Featured).Take(5).ToListAsync();

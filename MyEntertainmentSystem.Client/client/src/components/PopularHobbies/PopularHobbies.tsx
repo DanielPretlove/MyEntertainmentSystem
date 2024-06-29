@@ -56,7 +56,7 @@ export default function PopularHobbies() {
               </div>
               <div className="info-section">
                 <h2>{data.name}</h2>
-                <p>{data.description}</p>
+                {/* <p>{data.description}</p> */}
               </div>
             </div>
           ))}

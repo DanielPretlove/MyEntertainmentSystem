@@ -6,14 +6,13 @@ import { Link, useNavigate } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import PersonIcon from "@mui/icons-material/Person";
 import { header } from "../../models/HeaderModel";
-import { useContext } from "react";
-import { NavContext } from "../../context/Nav/NavContext";
+import { useNavContext } from "../../context/Nav/NavContext";
 
 
 
 export default function Header() {
   const navigate = useNavigate();
-  const nav = useContext(NavContext);
+  const nav = useNavContext();
 
   return (
     <header>
@@ -30,12 +29,12 @@ export default function Header() {
                 .map((item) => {
                   if (item.children !== null) {
                     return (
-                      <li>
+                      <li key={item.id}>
                         <span>{item.name}</span>
                         <div className="group-items">
                           {item.children?.map((itemChildren) => {
                             return (
-                              <Link to={itemChildren.url}>
+                              <Link key={itemChildren.id} to={itemChildren.url}>
                                 {itemChildren.name}
                               </Link>
                             );
@@ -45,7 +44,7 @@ export default function Header() {
                     );
                   } else {
                     return (
-                      <li>
+                      <li key={item.id}>
                         <Link to={item.url as string}>{item.name}</Link>
                       </li>
                     );
@@ -53,59 +52,15 @@ export default function Header() {
                 })}
             </ul>
           </nav>
-          <nav className="other-links">
-            <ul>
-              {header
-                .filter((item) => item.right === true)
-                .map((item) => {
-                  if (item.children !== null && item.name === "Avatar") {
-                    return (
-                      <li>
-                        <PersonIcon className="avatar" fontSize={"large"} />
-                        <div className="group-items">
-                          {item.children?.map((itemChildren) => {
-                            if (itemChildren.name === "Logout") {
-                              return (
-                                <div className="logout-section">
-                                  <Link to={itemChildren.url}>
-                                    {itemChildren.name}
-                                  </Link>
-                                  <LogoutOutlinedIcon
-                                    className="logout-icon"
-                                    fontSize="small"
-                                  />
-                                </div>
-                              );
-                            } else {
-                              return (
-                                <Link to={itemChildren.url}>
-                                  {itemChildren.name}
-                                </Link>
-                              );
-                            }
-                          })}
-                        </div>
-                      </li>
-                    );
-                  } else if (item.children === null) {
-                    return (
-                      <li>
-                        <Link to={item.url as string}>{item.name}</Link>
-                      </li>
-                    );
-                  } else return <></>;
-                })}
-            </ul>
-          </nav>
         </div>
 
         <div className="mobile-menu-container">
-          <div className="header-icon-container" onClick={() => nav.toggleNav()}>
+          <div className="header-icon-container" onClick={() => nav.dispatch({type: "toggle"})}>
             <p>Menu</p>
             <MenuIcon className="menuIcon"></MenuIcon>
           </div>
 
-          <div className={nav.state ? "active" : ""}>
+          <div className={nav.state ? "active" : "not-active"}>
             <div className="mobile-menu-content">
               <nav>
                 <ul>
@@ -114,7 +69,7 @@ export default function Header() {
                     .map((item) => {
                       if (item.children !== null) {
                         return (
-                          <li>
+                          <li key={item.id}>
                             <div className="group-name">
                               <span>{item.name}</span>
                               <KeyboardArrowDownIcon />
@@ -122,7 +77,7 @@ export default function Header() {
                             <div className="group-items">
                               {item.children?.map((itemChildren) => {
                                 return (
-                                  <Link to={itemChildren.url}>
+                                  <Link key={itemChildren.id} to={itemChildren.url}>
                                     {itemChildren.name}
                                   </Link>
                                 );
@@ -132,7 +87,7 @@ export default function Header() {
                         );
                       } else {
                         return (
-                          <li>
+                          <li key={item.id}>
                             <Link to={item.url as string}>{item.name}</Link>
                           </li>
                         );
@@ -142,13 +97,13 @@ export default function Header() {
                     .filter((item) => item.name === "Avatar")
                     .map((item) => {
                       return (
-                        <li className="avatar-list">
+                        <li key={item.id} className="avatar-list">
                           <PersonIcon className="avatar" fontSize={"large"} />
                           <div className="group-items">
                             {item.children?.map((itemChildren) => {
                               if (itemChildren.name === "Logout") {
                                 return (
-                                  <div className="logout-section">
+                                  <div key={itemChildren.id} className="logout-section">
                                     <Link to={itemChildren.url}>
                                       {itemChildren.name}
                                     </Link>
@@ -157,7 +112,7 @@ export default function Header() {
                                 );
                               } else {
                                 return (
-                                  <Link to={itemChildren.url}>
+                                  <Link key={itemChildren.id} to={itemChildren.url}>
                                     {itemChildren.name}
                                   </Link>
                                 );

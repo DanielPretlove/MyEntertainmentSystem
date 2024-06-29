@@ -6,6 +6,7 @@ import PageWrapper from './components/PageWrapper/PageWrapper';
 import { useContext } from 'react';
 import HobbiesAdminPage from './pages/Admin/Hobbies/HobbiesAdminPage/HobbiesAdminPage';
 import { NavContext } from './context/Nav/NavContext';
+import HobbiesDisplay from './pages/Admin/Hobbies/HobbiesDisplay/HobbiesDisplay';
 
 
 
@@ -14,7 +15,7 @@ export default function App() {
   const nav = useContext(NavContext);
   return (
     <div className="App">
-      <div className={nav.state ? "overlay" : ""} onClick={() => nav.toggleNav()}></div>
+      <div className={nav.state ? "overlay" : ""} onClick={() => nav.dispatch({type: "toggle"})}></div>
         <BrowserRouter>
           <Header />
           <PageWrapper>

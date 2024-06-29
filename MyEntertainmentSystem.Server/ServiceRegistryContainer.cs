@@ -12,7 +12,7 @@ namespace MyEntertainmentSystem.Server
         public static IServiceCollection ServiceRegistryContainer(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped<HobbiesService>();
-            services.AddScoped<PopularHobbiesService>();
+            services.AddScoped<HobbiesService>();
             services.AddScoped(typeof(IRepository<Hobbies>), typeof(Repository<Hobbies>));
             services.AddScoped(typeof(IHobbyRepository), typeof(HobbyRepository));
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

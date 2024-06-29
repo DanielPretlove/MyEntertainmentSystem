@@ -2,9 +2,14 @@ export const initialState = {
   toggle: false
 };
 
-export interface NavState {
-  toggle: Object;
+
+type Toggle = {
+
 }
+export interface NavState {
+  toggle: Toggle;
+}
+
 export type NavAction = {
   type: string;
 }

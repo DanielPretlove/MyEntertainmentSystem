@@ -8,38 +8,33 @@ using System.Threading.Tasks;
 
 namespace MyEntertainmentSystem.Application.Services
 {
-    public class HobbiesService
+    public class HobbiesService : GenericService<Hobbies>, IHobbiesService
     {
-        private readonly IRepository<Hobbies> _repository;
 
-        public HobbiesService(IRepository<Hobbies> repository)
+        private readonly IHobbyRepository _repository;
+
+        public HobbiesService(IHobbyRepository repository) : base(repository)
         {
             _repository = repository;
         }
 
-        public async Task<IList<Hobbies>> GetAll()
+        public async Task<IList<Hobbies>> GetAllHobbies()
         {
-            return await _repository.GetAllAsync();
+            return await _repository.GetAllHobbiesAsync();
         }
 
-        public async Task<Hobbies> GetById(Guid id)
+        public async Task<Hobbies?> GetHobbyById(Guid id)
         {
-            return await _repository.GetById(id);
+            return await _repository.GetHobbyById(id);
+        }
+        public async Task<IList<Hobbies>> FeaturedHobbies()
+        {
+            return await _repository.GetTopFeaturedHobbiesAsync();
         }
 
-        public async Task<Hobbies> Insert(Hobbies data)
+        public async Task UpdateFeaturedHobby(Guid id, bool featuredFlag)
         {
-            return await _repository.InsertAsync(data);
-        }
-
-        public async Task Update(Hobbies data)
-        {
-            await _repository.UpdateAsync(data);
-        }
-
-        public async Task<Hobbies> Delete(Guid id)
-        {
-            return await _repository.DeleteAsync(id);
+            await _repository.UpdateFeaturedHobbyFlag(id, featuredFlag);
         }
     }
 }

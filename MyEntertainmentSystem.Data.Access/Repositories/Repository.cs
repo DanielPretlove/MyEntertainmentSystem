@@ -24,7 +24,7 @@ namespace MyEntertainmentSystem.Data.Access.Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetById(Guid id)
+        public async Task<T?> GetById(Guid id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
@@ -38,15 +38,18 @@ namespace MyEntertainmentSystem.Data.Access.Repositories
 
         public async Task UpdateAsync(T entity)
         {
-            _context.Set<T>().Entry(entity).State = EntityState.Modified;
+            _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
         }
-        public async Task<T> DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var result = await _context.Set<T>().FindAsync(id);
-            _context.Set<T>().Remove(result);
-            await _context.SaveChangesAsync();
-            return result;
+
+            if (result != null) 
+            {
+                _context.Set<T>().Remove(result);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

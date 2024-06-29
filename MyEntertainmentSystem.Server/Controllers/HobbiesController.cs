@@ -20,46 +20,50 @@ namespace MyEntertainmentSystem.Server.Controllers
 
         [HttpGet("list")]
         [AllowAnonymous]
-        public async Task<ActionResult<IList<Hobbies>>> GetList()
+        public async Task<ActionResult<IList<Hobbies>>> GetHobbyList()
         {
-            var result = await _service.GetAll();
+            var result = await _service.GetAllHobbies();
             return Ok(result);
         }
 
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Hobbies>> GetById(Guid id)
-        {
-            var result = await _service.GetById(id);
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            else
-            {
-                return Ok(result);
-            }
-        }
-
         [HttpPost]
-        public async Task<ActionResult<Hobbies>> InsertAnime(Hobbies data)
+        public async Task<ActionResult<Hobbies>> InsertHobby(Hobbies data)
         {
             var result = await _service.Insert(data);
             return Ok(result);
         }
 
         [HttpPut]
-        public async Task UpdateAnime(Hobbies data)
+        public async Task UpdateHobby(Hobbies data)
         {
             await _service.Update(data);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Hobbies>> DeleteAnime(Guid id)
+        public async Task DeleteHobby(Guid id)
         {
-            var result = await _service.Delete(id);
+            await _service.Delete(id);
+        }
+
+        [HttpGet("/popularHobbies")]
+        public async Task<ActionResult<IList<Hobbies>>> PopularHobbies()
+        {
+            var result = await _service.FeaturedHobbies();
             return Ok(result);
+        }
+
+        [HttpPut("update-flag/{id}")]
+        public async Task<IActionResult> UpdateHasFlag(Guid id, bool hasFlag)
+        {
+            var hobby = await _service.GetHobbyById(id);
+            if (hobby == null)
+            {
+                return NotFound();
+            }
+
+            await _service.UpdateFeaturedHobby(id, hasFlag);
+            return NoContent();
         }
     }
 }

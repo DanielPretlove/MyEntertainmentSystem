@@ -1,4 +1,5 @@
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -18,7 +19,10 @@ import HobbiesDisplay from "../HobbiesDisplay/HobbiesDisplay";
 import { useMemo, useRef, useState } from "react";
 import { useHobbiesAdminContext } from "../../../../context/Hobbies/Admin/HobbiesAdminContext";
 import { IHobbies } from "../../../../interfaces/IHobbies";
-
+import AddIcon from '@mui/icons-material/Add';
+import HobbiesCreate from "../HobbiesCreate/HobbiesCreate";
+import { getHobbyTypeValue } from "../../../../utils/enumConverter";
+import { HobbiesCreateAndUploadContextProvider } from "../../../../context/Hobbies/CreateAndUpload/HobbiesCreateAndUploadContext";
 export default function HobbiesList() {
   const hobbiesAPI = useHobbiesListAPI();
   const dialog = useHobbiesAdminContext();
@@ -37,20 +41,23 @@ export default function HobbiesList() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   }
-  console.log(hobbies);
+
   return (
     <>
       <Typography variant="h3" gutterBottom>
         Hobbies List Page
       </Typography>
+      <div className="button-container">
+        <Button variant="contained" color="primary" startIcon={<AddIcon />} sx={{ mb: 3 }} onClick={() => dialog.dispatch({type: "create"})}>Create New</Button>
+      </div>
       <Paper>
         <TableContainer>
-          <Table sx={{ minWidth: 650 }} aria-label="caption table">
+          <Table aria-label="caption table">
             <TableHead>
               <TableRow>
                 <TableCell>Name</TableCell>
-                <TableCell align="right">Type</TableCell>
-                <TableCell align="right">Completion State</TableCell>
+                <TableCell align="right">Categories</TableCell>
+                <TableCell align="right">Hobby Type</TableCell>
                 <TableCell align="right">Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -60,8 +67,8 @@ export default function HobbiesList() {
                   <TableCell component="th" scope="row">
                     {item.name}
                   </TableCell>
-                  {/* <TableCell align="right">{item}</TableCell> */}
-                  <TableCell align="right">{item.completionState}</TableCell>
+                  <TableCell align="right">{item.categories}</TableCell>
+                  <TableCell align="right">{getHobbyTypeValue(item.hobbyType)}</TableCell>
                   <TableCell align="right">
                     <VisibilityIcon
                       color="primary"
@@ -89,6 +96,10 @@ export default function HobbiesList() {
         />
       </Paper>
 
+      {dialog.dialog && dialog.create ? 
+        <HobbiesCreateAndUploadContextProvider>
+          <HobbiesCreate />
+      </HobbiesCreateAndUploadContextProvider> : ""}
       {dialog.dialog && dialog.view ? <HobbiesDisplay hobby={hobby.current} /> : ""}
     </>
   );

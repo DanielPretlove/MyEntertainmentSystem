@@ -6,6 +6,7 @@ import { HobbiesAdminAction, HobbiesAdminReducer, initialState } from "./Hobbies
 
 export interface IHobbiesAdminState {
   dialog: boolean,
+  create: boolean,
   view: boolean,
   edit: boolean,
   delete: boolean,
@@ -14,6 +15,7 @@ export interface IHobbiesAdminState {
 
 export const HobbiesAdminContext = createContext<IHobbiesAdminState>({
   dialog: false,
+  create: false,
   view: false,
   edit: false,
   delete: false,
@@ -28,6 +30,7 @@ export const HobbiesAdminContextProvider = ({children}: React.PropsWithChildren<
     <HobbiesAdminContext.Provider value={
       {
         dialog: state.dialog,
+        create: state.create,
         view: state.view,
         edit: state.edit,
         delete: state.delete,

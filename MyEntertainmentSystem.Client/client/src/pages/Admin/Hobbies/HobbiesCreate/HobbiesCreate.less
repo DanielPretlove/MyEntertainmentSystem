@@ -1,0 +1,37 @@
+@import "/src/styles/variables.less";
+
+div.container {
+    display: grid;
+    grid-template-columns: auto;
+}
+
+
+div.dialog {
+    .MuiPaper-root {
+        width: 1600px;
+        height: 1000px; 
+        
+        @media @tablet {
+            width: 900px;
+        }
+
+        @media @mobile {
+            position: absolute;
+            margin: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+        }
+    }
+}
+
+.dialogTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.close {
+    display: flex;
+    justify-content: end;
+}

@@ -1,0 +1,71 @@
+@import "/src/styles/variables.less";
+
+div.display-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media @tablet {
+        grid-template-columns: auto;
+    }
+
+    img.hobbyImage {
+        position: relative;
+        display: flex;
+        left: 0;
+        top: 0;
+        grid-column: 1;
+        grid-row: 1;
+        height: 890px;
+        width: 700px;
+        object-fit: cover;
+        margin-right: 50px;
+
+        @media @tablet {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            grid-row: 7;
+        }
+    }
+
+
+    div.content-container {
+        @media @tablet {
+            display: contents;
+
+
+        }
+    }
+}
+
+
+div.dialog-display {
+    .MuiPaper-root {
+        max-width: 1600px;
+        height: 1000px; 
+        
+        @media @tablet {
+            max-width: 900px;
+        }
+
+        @media @mobile {
+            position: absolute;
+            margin: 0;
+            top: 0;
+            max-width: 100%;
+            height: 100vh;
+            max-width: 100vh;
+        }
+    }
+}
+
+.dialogTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.close {
+    display: flex;
+    justify-content: end;
+}

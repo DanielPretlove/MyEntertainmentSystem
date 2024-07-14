@@ -12,8 +12,8 @@ using MyEntertainmentSystem.Data.Access;
 namespace MyEntertainmentSystem.Data.Access.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
-    [Migration("20240629003948_Updating Migration for Hobby Data Model")]
-    partial class UpdatingMigrationforHobbyDataModel
+    [Migration("20240629103615_Initial Migration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

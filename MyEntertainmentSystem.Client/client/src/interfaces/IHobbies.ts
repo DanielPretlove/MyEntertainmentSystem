@@ -1,11 +1,12 @@
 export interface IHobbies {
   id: string;
   name: string;
+  categories: string;
   description: ISummary[];
   imagePath: string;
   episodes: string;
   featured: boolean;
-  hobbyType: TypeEnum;
+  hobbyType: HobbyEnum;
   completionState: CompletionStateEnum;
 }
 
@@ -14,15 +15,15 @@ export interface ISummary {
   content: string;
 }
 
-enum CompletionStateEnum {
-  Todo = "Todo",
-  Doing = "Doing",
-  OnHold = "OnHold",
-  NotFinishing = "Not Finishing",
-  Done = "Done"
+export enum CompletionStateEnum {
+  Todo = 0,
+  Doing = 1,
+  OnHold = 2,
+  Dropped = 3,
+  Done = 4
 }
 
-enum TypeEnum {
+export enum HobbyEnum {
   Movies = 0,
   Anime = 1,
   Manga = 2,

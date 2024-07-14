@@ -11,7 +11,7 @@ namespace MyEntertainmentSystem.Data.Entities.HobbyCategories
         Todo = 0,
         Doing = 1,
         OnHold = 2,
-        NotFinishing = 3,
+        Dropped = 3,
         Done = 4
     }
 }
